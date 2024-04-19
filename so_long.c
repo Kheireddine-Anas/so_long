@@ -23,55 +23,6 @@ void	*ft_calloc(size_t count, size_t size)
 	return (hld);
 }
 
-void	ft_strncpy(char *dst, char *src, int len)
-{
-	int	i;
-
-	i = -1;
-	while (++i < len)
-		dst[i] = src[i];
-	dst[i] = '\0';
-}
-
-char **ft_split(char *str)
-{
-	int		i;
-	int		j;
-	int		k;
-	int		count;
-	char	**all;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	count = 0;
-	while (str[i])
-	{
-		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
-			i++;
-		if (str[i])
-			count++;
-		while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
-			i++;
-	}
-	i = 0;
-	all = malloc(sizeof(char *) * (count + 1));
-	while (str[i])
-	{
-		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
-			i++;
-		j = i;
-		while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
-			i++;
-		if (i > j)
-		{
-			all[k] = malloc(sizeof(char) * ((i - j) + 1));
-			ft_strncpy(all[k++], &str[j], i - j);
-		}
-	}
-	all[k] = NULL;
-	return (all);
-}
 
 char	*line_con(char *s1, char *s2)
 {
@@ -80,6 +31,7 @@ char	*line_con(char *s1, char *s2)
 	int		j;
 
 	i = 0;
+	j = 0;
 	str = malloc(sizeof(char) * (ft_strlen(s1)+ ft_strlen(s1)) + 1);
 	if (!str)
 		return (0);
@@ -104,7 +56,6 @@ void	map_checker(t_game *map)
 	int	rmb;
 	
 	i = 0;
-	// printf("%s#", map->cp_map[0]);
 	while (map->cp_map[i])
 	{
 		j = 0;
@@ -114,7 +65,7 @@ void	map_checker(t_game *map)
 			j++;
 			col++;
 		}
-		if (i == 1)
+		if (i == 0)
 			rmb = col;
 		if (col != rmb)
 		{
@@ -171,7 +122,5 @@ int	main(int argc, char **argv)
 		free(line);
 	}
 	map->cp_map = ft_split(map->str_line);
-	printf(">>%s<<\n", map->cp_map[0]);
 	map_checker(map);
-	printf("%s<<\n", map->cp_map[1]);
 }
