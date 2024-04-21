@@ -18,6 +18,11 @@ typedef struct s_game
 	char	**gui_map;
 	int		line;
 	int		length;
+	int		player;
+	int		px;
+	int		py;
+	int		coins;
+	int		exit;
 }	t_game;
 
 char	*get_next_line(int fd);
@@ -30,5 +35,6 @@ char	*ft_last_line(char *left_str);
 void	*ft_calloc(size_t count, size_t size);
 char	**ft_split(char const *str, char c);
 void	borders_check(t_game *map);
+void	errors_msg(int msg_num);
 
 #endif
