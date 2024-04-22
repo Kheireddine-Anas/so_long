@@ -6,7 +6,7 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 13:28:09 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/21 23:34:08 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:07:26 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	errors_msg(int msg_num)
 	if (msg_num == 3)
 		write(1, "Error\nCheck The Map\n", 21);
 	if (msg_num == 4)
-		write(1, "Error\nCheck The Map Path\n", 21);
+		write(1, "Error\nCheck The Map Path\n", 26);
 	exit(1);
 }

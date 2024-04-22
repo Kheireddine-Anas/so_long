@@ -6,7 +6,7 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 23:10:52 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/21 23:57:19 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:06:23 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,11 @@ void	elements_check(t_game *map, int i, int j)
 			if (map->cp_map[i][j] == '\n')
 				j++;
 			if (map->cp_map[i][j] == 'P')
+			{
+				map->px = i;
+				map->py = j;
 				map->player++;
+			}	
 			else if (map->cp_map[i][j] == 'C')
 				map->coins++;
 			else if (map->cp_map[i][j] == 'E')
@@ -99,10 +103,9 @@ void	elements_check(t_game *map, int i, int j)
 		}
 		i++;
 	}
-	elements_check_num(map);
 }
 
-void	path_valid(t_game *map, int x, int y)
+void	path_check_recursive(t_game *map, int x, int y)
 {
 	path_check(map, x, y + 1);
 	path_check(map, x, y - 1);
@@ -114,24 +117,29 @@ int	path_check(t_game *map, int x, int y)
 {
 	if (map->cp_map[x][y] == 'P')
 	{
-		map->cp_map[x][y] == '1';
-		path_valid(map, x, y);
+		map->cp_map[x][y] = '1';
+		path_check_recursive(map, x, y);
 	}
-	if (map->cp_map[x][y] == 'E')
+	else if (map->cp_map[x][y] == 'E')
 	{
 		map->exit--;
+		map->cp_map[x][y] = '1';
+		path_check_recursive(map, x, y);
 	}
-	if (map->cp_map[x][y] == 'P')
+	else if (map->cp_map[x][y] == 'C')
 	{
-		map->cp_map[x][y] == '1';
-		path_valid(map, x, y);
+		map->coins--;
+		map->cp_map[x][y] = '1';
+		path_check_recursive(map, x, y);
 	}
-	if (map->cp_map[x][y] == 'P')
+	else if (map->cp_map[x][y] == '0')
 	{
-		map->cp_map[x][y] == '1';
-		path_valid(map, x, y);
+		map->cp_map[x][y] = '1';
+		path_check_recursive(map, x, y);
 	}
-	
+	if (map->coins == 0 && map->exit == 0)
+		return (0);
+	return (1);
 }
 
 void	map_check(t_game *map)
@@ -145,7 +153,8 @@ void	map_check(t_game *map)
 		map->length++;
 	borders_check(map);
 	elements_check(map, 0, 0);
-	if (!path_check(map, map->px, map->py))
+	elements_check_num(map);
+	if (path_check(map, map->px, map->py))
 		errors_msg(4);
 }
  

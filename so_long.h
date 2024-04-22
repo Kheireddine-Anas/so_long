@@ -35,6 +35,7 @@ char	*ft_last_line(char *left_str);
 void	*ft_calloc(size_t count, size_t size);
 char	**ft_split(char const *str, char c);
 void	borders_check(t_game *map);
+int		path_check(t_game *map, int x, int y);
 void	errors_msg(int msg_num);
 
 #endif
