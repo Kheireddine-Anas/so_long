@@ -6,7 +6,7 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 23:10:52 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/22 16:06:23 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:51:19 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	elements_check(t_game *map, int i, int j)
 				map->px = i;
 				map->py = j;
 				map->player++;
-			}	
+			}
 			else if (map->cp_map[i][j] == 'C')
 				map->coins++;
 			else if (map->cp_map[i][j] == 'E')
@@ -154,40 +154,114 @@ void	map_check(t_game *map)
 	borders_check(map);
 	elements_check(map, 0, 0);
 	elements_check_num(map);
+	map->gui_coins = map->coins;
 	if (path_check(map, map->px, map->py))
 		errors_msg(4);
 }
- 
+
+void	show_game(t_game *map, int i, int j)
+{
+	while (map->gui_map[i])
+	{
+		j = 0;
+		while (map->gui_map[i][j])
+		{
+			if (map->gui_map[i][j] == 'P')
+				mlx_put_image_to_window(map->mlx, map->mlx_win,
+					map->img_player, (j * 32), (i * 32));
+			else if (map->gui_map[i][j] == 'C')
+				mlx_put_image_to_window(map->mlx, map->mlx_win,
+					map->img_coins, (j * 32), (i * 32));
+			else if (map->gui_map[i][j] == '1')
+				mlx_put_image_to_window(map->mlx, map->mlx_win,
+					map->img_wall, (j * 32), (i * 32));
+			else if (map->gui_map[i][j] == 'E')
+				mlx_put_image_to_window(map->mlx, map->mlx_win,
+					map->img_exit, (j * 32), (i * 32));
+			j++;
+		}
+		i++;
+	}
+}
+
+int	keys(int key, t_game *gui_map)
+{
+	int	check;
+
+	check = 0;
+	if (key == KEY_L || key == KEY_A)
+	{
+		check = map_left(gui_map);
+	}
+	else if (key == KEY_R || key == KEY_D)
+	{
+		check = map_right(gui_map);
+	}
+	else if (key == KEY_DW || key == KEY_S)
+	{
+		check = map_down(gui_map);
+	}
+	else if (key == KEY_U || key == KEY_W)
+	{
+		check = map_up(gui_map);
+	}
+	if (check)
+	{
+		gui_map->moves++;
+		printf("Moves : %d\n", gui_map->moves);
+	}
+	return (0);
+}
+
+int	close_win(t_game *map)
+{
+	(void)map;
+	exit(0);
+}
+
+void	gui_game(t_game *gui_map)
+{
+	gui_map->mlx = mlx_init();
+	gui_map->mlx_win = mlx_new_window(gui_map->mlx, (gui_map->length * 32),
+			(gui_map->line * 32), "so_long");
+	gui_map->img_coins = mlx_xpm_file_to_image(gui_map->mlx, "coin.xpm",
+			&gui_map->img_width, &gui_map->img_height);
+	gui_map->img_player = mlx_xpm_file_to_image(gui_map->mlx, "ply.xpm",
+			&gui_map->img_width, &gui_map->img_height);
+	gui_map->img_wall = mlx_xpm_file_to_image(gui_map->mlx, "wall.xpm",
+			&gui_map->img_width, &gui_map->img_height);
+	gui_map->img_exit = mlx_xpm_file_to_image(gui_map->mlx, "exit.xpm",
+			&gui_map->img_width, &gui_map->img_height);
+	show_game(gui_map, 0, 0);
+	mlx_key_hook(gui_map->mlx_win, keys, gui_map);
+	mlx_hook(gui_map->mlx_win, 17, 0, close_win, gui_map);
+	mlx_loop(gui_map->mlx);
+}
+
 int	main(int argc, char **argv)
 {
-	int		i;
 	int		fd;
 	t_game	*map;
 	char	*line;
 
-	i = 0;
 	args_exe(argc, argv);
 	fd = open(argv[1], O_RDONLY);
 	map = ft_calloc(1, sizeof(t_game));
 	if (fd == -1)
-	{
-		write(1, "Error\n", 7);
-		write(1, "Opening file\n", 14);
-		exit(1);
-	}
+		errors_msg(5);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line && (line[0] == '\0' || line[0] == '\n'))
 			errors_msg(3);
 		map->str_line = line_con(map->str_line, line);
-		// map->str_line = line_con(map->str_line, " ");
 		if (!line)
-			break;
+			break ;
 		free(line);
 		map->line++;
 	}
 	map->cp_map = ft_split(map->str_line, '\n');
+	map->gui_map = ft_split(map->str_line, '\n');
 	map_check(map);
-	printf(">>%d", map->line);
+	gui_game(map);
 }

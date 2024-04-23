@@ -6,13 +6,30 @@
 # endif
 #include <stdio.h>
 # include <fcntl.h>
+# include <mlx.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+# define KEY_L 123
+# define KEY_R 124
+# define KEY_DW 125
+# define KEY_U 126
+
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_W 13
 
 typedef struct s_game
 {
 	void	*mlx;
 	void	*mlx_win;
+	void	*img_wall;
+	void	*img_exit;
+	void	*img_player;
+	void	*img_coins;
+	int		img_width;
+	int		img_height;
 	char	*str_line;
 	char	**cp_map;
 	char	**gui_map;
@@ -22,7 +39,9 @@ typedef struct s_game
 	int		px;
 	int		py;
 	int		coins;
+	int		gui_coins;
 	int		exit;
+	int		moves;
 }	t_game;
 
 char	*get_next_line(int fd);
@@ -37,5 +56,10 @@ char	**ft_split(char const *str, char c);
 void	borders_check(t_game *map);
 int		path_check(t_game *map, int x, int y);
 void	errors_msg(int msg_num);
+void	show_game(t_game *map);
+int		map_left(t_game *gui_map);
+int		map_right(t_game *gui_map);
+int		map_down(t_game *gui_map);
+int		map_up(t_game *gui_map);
 
 #endif

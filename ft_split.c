@@ -6,7 +6,7 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 09:34:14 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/20 13:24:44 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:54:55 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,3 @@ char	**ft_split(char const *str, char c)
 	strings[i] = 0;
 	return (strings);
 }
-
-// int main()
-// {
-// 	char **str;
-// 	str = ft_split("The las thing", ' ');
-// 	printf("%s\n", str[0]);
-// 	printf("%s\n", str[1]);
-// 	printf("%s\n", str[2]);
-// }
