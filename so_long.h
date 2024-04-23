@@ -53,13 +53,21 @@ char	*ft_first_line(char *left_str);
 char	*ft_last_line(char *left_str);
 void	*ft_calloc(size_t count, size_t size);
 char	**ft_split(char const *str, char c);
+char	*line_con(char *s1, char *s2);
+void	args_exe(int argc, char **argv);
 void	borders_check(t_game *map);
 int		path_check(t_game *map, int x, int y);
 void	errors_msg(int msg_num);
-void	show_game(t_game *map);
+void	show_game(t_game *map, int i, int j);
+void	elements_check(t_game *map, int i, int j);
+void	elements_check_num(t_game *map);
+void	path_check_recursive(t_game *map, int x, int y);
+int		path_check(t_game *map, int x, int y);
+int		keys(int key, t_game *gui_map);
 int		map_left(t_game *gui_map);
 int		map_right(t_game *gui_map);
 int		map_down(t_game *gui_map);
 int		map_up(t_game *gui_map);
+int		close_win(t_game *map);
 
 #endif

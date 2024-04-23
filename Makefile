@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRC = so_long.c get_next_line_utils.c get_next_line.c ft_split.c utils.c
+SRC = so_long.c get_next_line_utils.c get_next_line.c ft_split.c utils.c check_map.c gui_map.c arrow_keys.c
 
 CFLAGS = -Wall -Wextra -Werror -Imlx
 

@@ -6,31 +6,67 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 13:28:09 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/23 18:54:35 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/23 19:27:08 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	borders_check(t_game *map)
+void	*ft_calloc(size_t count, size_t size)
 {
-	int	i;
-	int	j;
+	char	*hld;
+	size_t	i;
+
+	i = -1;
+	hld = malloc(count * size);
+	if (!hld)
+		return (NULL);
+	while (++i < size)
+		hld[i] = 0;
+	return (hld);
+}
+
+char	*line_con(char *s1, char *s2)
+{
+	char	*str;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
-	while (map->cp_map[i])
+	str = malloc(sizeof(char) * (ft_strlen(s1)+ ft_strlen(s2)) + 1);
+	if (!str)
+		return (0);
+	while (s1 && s1[i])
 	{
-		j = 0;
-		while (map->cp_map[i][j] && map->cp_map[i][j] != '\n')
-		{
-			if (map->cp_map[0][j] != '1' || map->cp_map[i][0] != '1' ||
-			map->cp_map[map->line - 1][j] != '1' ||
-			map->cp_map[i][map->length - 1] != '1')
-				printf("GOLK");
-			j++;
-		}
+		str[i] = s1[i];
 		i++;
+	}
+	while (s2 && s2[j])
+		str[i++] = s2[j++];
+	str[i] = 0;
+	free(s1);
+	return (str);
+}
+
+void	args_exe(int argc, char **argv)
+{
+	int	i;
+
+	i = 0;
+	if (argc != 2)
+	{
+		write(1, "Error\n", 7);
+		exit(1);
+	}
+	while (argv[1][i])
+		i++;
+	if (!(argv[1][i - 5]) || argv[1][i - 4] != '.' || argv[1][i - 3] != 'b'
+		|| argv[1][i - 2] != 'e' || argv[1][i - 1] != 'r')
+	{
+		write(1, "Error\n", 7);
+		write(1, "Map Extention .ber\n", 20);
+		exit(1);
 	}
 }
 
@@ -45,86 +81,4 @@ void	errors_msg(int msg_num)
 	if (msg_num == 5)
 		write(1, "Error\nCheck The Map File", 7);
 	exit(1);
-}
-
-void	finish_game(void)
-{
-	write(1, "GAME OVER!", 11);
-	exit(0);
-}
-
-int	map_left(t_game *map)
-{
-	if (map->gui_map[map->px][map->py - 1] != 'E' &&
-			map->gui_map[map->px][map->py - 1] != '1')
-	{
-		if (map->gui_map[map->px][map->py - 1] == 'C')
-			map->gui_coins--;
-		map->gui_map[map->px][map->py] = '0';
-		map->gui_map[map->px][map->py - 1] = 'P';
-		map->py--;
-		mlx_clear_window(map->mlx, map->mlx_win);
-		show_game(map);
-		return (1);
-	}
-	if ((map->gui_coins == 0) && (map->gui_map[map->px][map->py - 1] == 'E'))
-		finish_game();
-	return (0);
-}
-
-int	map_right(t_game *map)
-{
-	if (map->gui_map[map->px][map->py + 1] != 'E' &&
-			map->gui_map[map->px][map->py + 1] != '1')
-	{
-		if (map->gui_map[map->px][map->py + 1] == 'C')
-			map->gui_coins--;
-		map->gui_map[map->px][map->py] = '0';
-		map->gui_map[map->px][map->py + 1] = 'P';
-		map->py++;
-		mlx_clear_window(map->mlx, map->mlx_win);
-		show_game(map);
-		return (1);
-	}
-	if ((map->gui_coins == 0) && (map->gui_map[map->px][map->py + 1] == 'E'))
-		finish_game();
-	return (0);
-}
-
-int	map_down(t_game *map)
-{
-	if (map->gui_map[map->px + 1][map->py] != 'E' &&
-			map->gui_map[map->px + 1][map->py] != '1')
-	{
-		if (map->gui_map[map->px + 1][map->py] == 'C')
-			map->gui_coins--;
-		map->gui_map[map->px][map->py] = '0';
-		map->gui_map[map->px + 1][map->py] = 'P';
-		map->px++;
-		mlx_clear_window(map->mlx, map->mlx_win);
-		show_game(map);
-		return (1);
-	}
-	if ((map->gui_coins == 0) && (map->gui_map[map->px + 1][map->py] == 'E'))
-		finish_game();
-	return (0);
-}
-
-int	map_up(t_game *map)
-{
-	if (map->gui_map[map->px - 1][map->py] != 'E' &&
-			map->gui_map[map->px - 1][map->py] != '1')
-	{
-		if (map->gui_map[map->px - 1][map->py] == 'C')
-			map->gui_coins--;
-		map->gui_map[map->px][map->py] = '0';
-		map->gui_map[map->px - 1][map->py] = 'P';
-		map->px--;
-		mlx_clear_window(map->mlx, map->mlx_win);
-		show_game(map);
-		return (1);
-	}
-	if ((map->gui_coins == 0) && (map->gui_map[map->px - 1][map->py] == 'E'))
-		finish_game();
-	return (0);
 }
