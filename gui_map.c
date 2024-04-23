@@ -6,7 +6,7 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 19:21:42 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/23 19:25:32 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/23 21:32:57 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,16 @@ int	keys(int key, t_game *gui_map)
 	int	check;
 
 	check = 0;
-	if (key == KEY_L || key == KEY_A)
-	{
+	if (key == 53)
+		close_win(gui_map);
+	else if (key == KEY_L || key == KEY_A)
 		check = map_left(gui_map);
-	}
 	else if (key == KEY_R || key == KEY_D)
-	{
 		check = map_right(gui_map);
-	}
 	else if (key == KEY_DW || key == KEY_S)
-	{
 		check = map_down(gui_map);
-	}
 	else if (key == KEY_U || key == KEY_W)
-	{
 		check = map_up(gui_map);
-	}
 	if (check)
 	{
 		gui_map->moves++;
