@@ -6,33 +6,11 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 19:09:17 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/24 00:34:15 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/24 02:50:30 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	borders_check(t_game *map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map->cp_map[i])
-	{
-		j = 0;
-		while (map->cp_map[i][j] && map->cp_map[i][j] != '\n')
-		{
-			if (map->cp_map[0][j] != '1' || map->cp_map[i][0] != '1' ||
-			map->cp_map[map->line - 1][j] != '1' ||
-			map->cp_map[i][map->length - 1] != '1')
-				printf("GOLK");
-			j++;
-		}
-		i++;
-	}
-}
 
 void	check_all(t_game *map, int i, int j)
 {

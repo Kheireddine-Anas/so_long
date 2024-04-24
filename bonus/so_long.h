@@ -60,7 +60,6 @@ char	**ft_split(char const *str, char c);
 char	*ft_itoa(int n);
 char	*line_con(char *s1, char *s2);
 void	args_exe(int argc, char **argv);
-void	borders_check(t_game *map);
 int		path_check(t_game *map, int x, int y);
 void	errors_msg(int msg_num);
 void	show_game(t_game *map, int i, int j);
@@ -76,6 +75,6 @@ int		map_right(t_game *gui_map);
 int		map_down(t_game *gui_map);
 int		map_up(t_game *gui_map);
 int		close_win(t_game *map);
-int	animation(t_game *map);
+int		fire_ani(t_game *map);
 
 #endif

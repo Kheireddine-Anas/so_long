@@ -6,11 +6,33 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 23:10:52 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/24 00:50:19 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/24 02:50:50 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	borders_check(t_game *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map->cp_map[i])
+	{
+		j = 0;
+		while (map->cp_map[i][j] && map->cp_map[i][j] != '\n')
+		{
+			if (map->cp_map[0][j] != '1' || map->cp_map[i][0] != '1' ||
+			map->cp_map[map->line - 1][j] != '1' ||
+			map->cp_map[i][map->length - 1] != '1')
+				printf("GOLK");
+			j++;
+		}
+		i++;
+	}
+}
 
 void	map_check(t_game *map)
 {
@@ -42,7 +64,7 @@ void	gui_game(t_game *gui_map)
 			&gui_map->img_width, &gui_map->img_height);
 	gui_map->img_exit = mlx_xpm_file_to_image(gui_map->mlx, "src/exit.xpm",
 			&gui_map->img_width, &gui_map->img_height);
-	gui_map->img_enemy = mlx_xpm_file_to_image(gui_map->mlx, "src/enemy.xpm",
+	gui_map->img_enemy = mlx_xpm_file_to_image(gui_map->mlx, "src/fire1.xpm",
 			&gui_map->img_width, &gui_map->img_height);
 	if (!(gui_map->img_coins) || !(gui_map->img_wall)
 		|| !(gui_map->img_exit) || !(gui_map->img_player)
@@ -51,7 +73,7 @@ void	gui_game(t_game *gui_map)
 	show_game(gui_map, 0, 0);
 	mlx_key_hook(gui_map->mlx_win, keys, gui_map);
 	mlx_hook(gui_map->mlx_win, 17, 0, close_win, gui_map);
-	mlx_loop_hook(gui_map->mlx, animation, gui_map);
+	mlx_loop_hook(gui_map->mlx, fire_ani, gui_map);
 	mlx_loop(gui_map->mlx);
 }
 

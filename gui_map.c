@@ -6,7 +6,7 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 19:21:42 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/23 21:32:57 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/23 22:50:11 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ int	keys(int key, t_game *gui_map)
 	if (check)
 	{
 		gui_map->moves++;
-		printf("Moves : %d\n", gui_map->moves);
+		write(1, "Moves : ", 9);
+		show_moves(gui_map->moves);
+		write(1, "\n", 1);
 	}
 	return (0);
 }

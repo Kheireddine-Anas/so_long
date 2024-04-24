@@ -6,7 +6,7 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 13:28:09 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/23 19:27:08 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/23 23:31:31 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,20 @@ void	errors_msg(int msg_num)
 {
 	if (msg_num == 2)
 		write(1, "Error\nCheck Map Elements\n", 26);
-	if (msg_num == 3)
+	else if (msg_num == 3)
 		write(1, "Error\nCheck The Map\n", 21);
-	if (msg_num == 4)
+	else if (msg_num == 4)
 		write(1, "Error\nCheck The Map Path\n", 26);
-	if (msg_num == 5)
+	else if (msg_num == 5)
 		write(1, "Error\nCheck The Map File", 7);
+	else if (msg_num == 6)
+		write(1, "Error\nCheck The Images", 23);
 	exit(1);
+}
+
+void	show_moves(int nbr)
+{
+	if (nbr > 9)
+		show_moves(nbr / 10);
+	write(1, &"0123456789"[nbr % 10], 1);
 }

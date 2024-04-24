@@ -6,7 +6,7 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 13:28:09 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/24 00:20:05 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/24 02:54:29 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,19 +86,3 @@ void	errors_msg(int msg_num)
 		write(1, "Error\nYou Lose!", 16);
 	exit(1);
 }
-
-void	show_moves(int nbr)
-{
-	if (nbr > 9)
-		show_moves(nbr / 10);
-	write(1, &"0123456789"[nbr % 10], 1);
-}
-
-// char	*to_str(int nbr)
-// {
-// 	char	*str;
-// 	if (nbr > 9)
-// 		show_moves(nbr / 10);
-// 	write(1, &"0123456789"[nbr % 10], 1);
-// 	return (str);
-// }

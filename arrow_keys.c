@@ -6,7 +6,7 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 19:25:42 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/23 19:31:41 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/23 22:51:24 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	finish_game(void)
 {
-	write(1, "GAME OVER!", 11);
+	write(1, "GAME OVER!\n", 12);
 	exit(0);
 }
 

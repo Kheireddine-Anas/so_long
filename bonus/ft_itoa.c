@@ -6,7 +6,7 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 00:24:53 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/24 01:13:04 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/24 02:48:47 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,35 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-int	animation(t_game *map)
+void	fire_img(t_game *map)
 {
-	if (map->loop < 10000)
+	if (map->hel == 1)
+	{
+		map->img_enemy = mlx_xpm_file_to_image
+			(map->mlx, "src/fire1.xpm", &map->img_width, &map->img_height);
+	}
+	else if (map->hel == 2)
+	{
+		map->img_enemy = mlx_xpm_file_to_image
+			(map->mlx, "src/fire2.xpm", &map->img_width, &map->img_height);
+	}
+	else if (map->hel == 3)
+	{
+		map->img_enemy = mlx_xpm_file_to_image
+			(map->mlx, "src/fire3.xpm", &map->img_width, &map->img_height);
+		map->hel = 0;
+	}
+}
+
+int	fire_ani(t_game *map)
+{
+	if (map->loop < 1000)
 	{
 		map->loop++;
 		return (0);
 	}
 	map->loop = 0;
-	if (map->hel == 1)
-	{
-		map->img_enemy = mlx_xpm_file_to_image
-			(map->mlx, "src/exit.xpm", &map->img_width, &map->img_height);
-	}
-	else if (map->hel == 2)
-	{
-		map->img_enemy = mlx_xpm_file_to_image
-			(map->mlx, "src/ply.xpm", &map->img_width, &map->img_height);
-		map->hel = 0;
-	}
+	fire_img(map);
 	mlx_clear_window(map->mlx, map->mlx_win);
 	show_game(map, 0, 0);
 	map->hel++;
