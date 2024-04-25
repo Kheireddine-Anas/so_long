@@ -6,14 +6,31 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 19:21:42 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/23 22:50:11 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:07:22 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	pleft(t_game *map)
+{
+	map->img_player = mlx_xpm_file_to_image(map->mlx, "src/ply_left.xpm",
+			&map->img_width, &map->img_height);
+	map->img_epl = mlx_xpm_file_to_image(map->mlx, "src/epl.xpm",
+			&map->img_width, &map->img_height);
+}
+
+void	pright(t_game *map)
+{
+	map->img_player = mlx_xpm_file_to_image(map->mlx, "src/ply.xpm",
+			&map->img_width, &map->img_height);
+	map->img_epl = mlx_xpm_file_to_image(map->mlx, "src/epr.xpm",
+			&map->img_width, &map->img_height);
+}
+
 void	show_game(t_game *map, int i, int j)
 {
+	mlx_clear_window(map->mlx, map->mlx_win);
 	while (map->gui_map[i])
 	{
 		j = 0;
@@ -31,6 +48,9 @@ void	show_game(t_game *map, int i, int j)
 			else if (map->gui_map[i][j] == 'E')
 				mlx_put_image_to_window(map->mlx, map->mlx_win,
 					map->img_exit, (j * 32), (i * 32));
+			else if (map->gui_map[i][j] == 'X')
+				mlx_put_image_to_window(map->mlx, map->mlx_win,
+					map->img_epl, (j * 32), (i * 32));
 			j++;
 		}
 		i++;

@@ -27,6 +27,7 @@ typedef struct s_game
 	void	*img_wall;
 	void	*img_exit;
 	void	*img_player;
+	void	*img_epl;
 	void	*img_coins;
 	int		img_width;
 	int		img_height;
@@ -65,10 +66,15 @@ void	path_check_recursive(t_game *map, int x, int y);
 void	show_moves(int nbr);
 int		path_check(t_game *map, int x, int y);
 int		keys(int key, t_game *gui_map);
+void	pleft(t_game *map);
+void	pright(t_game *map);
 int		map_left(t_game *gui_map);
 int		map_right(t_game *gui_map);
 int		map_down(t_game *gui_map);
 int		map_up(t_game *gui_map);
 int		close_win(t_game *map);
+void	eleft(t_game *map);
+void	eright(t_game *map);
+void	finish_game(void);
 
 #endif

@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRC = so_long.c get_next_line_utils.c get_next_line.c ft_split.c utils.c check_map.c gui_map.c arrow_keys.c
+SRC = so_long.c get_next_line_utils.c get_next_line.c ft_split.c utils.c utils1.c check_map.c gui_map.c arrow_keys.c
 
 CFLAGS = -Wall -Wextra -Werror -Imlx
 
@@ -13,7 +13,7 @@ all : $(NAME)
 # 	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 $(NAME): $(OBJ)
-		$(CC) $(OBJ) -Lmlx_library -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+		$(CC) $(OBJ) -L/usr/local/include -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 # $(NAME): $(OBJ)
 # 		$(CC) $(OBJ) -Lmlx_linux ./minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)

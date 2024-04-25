@@ -6,7 +6,7 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 13:28:09 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/24 02:54:29 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/25 10:58:28 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,13 @@ void	errors_msg(int msg_num)
 		write(1, "Error\nCheck The Images", 23);
 	else if (msg_num == 7)
 		write(1, "Error\nYou Lose!", 16);
+	else if (msg_num == 8)
+		write(1, "Error\nCheck Borders!", 21);
 	exit(1);
+}
+
+int	close_win(t_game *map)
+{
+	(void)map;
+	exit(0);
 }
