@@ -6,11 +6,11 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 00:24:53 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/24 02:48:47 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:04:31 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 static int	nb_len(int n)
 {

@@ -6,11 +6,11 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:36:40 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/25 11:37:27 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:04:57 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	eleft(t_game *map)
 {

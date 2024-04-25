@@ -6,11 +6,11 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 13:28:09 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/23 23:31:31 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:58:42 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -79,9 +79,11 @@ void	errors_msg(int msg_num)
 	else if (msg_num == 4)
 		write(1, "Error\nCheck The Map Path\n", 26);
 	else if (msg_num == 5)
-		write(1, "Error\nCheck The Map File", 7);
+		write(1, "Error\nCheck The Map File", 25);
 	else if (msg_num == 6)
 		write(1, "Error\nCheck The Images", 23);
+	else if (msg_num == 7)
+		write(1, "Error\nCheck Borders!", 21);
 	exit(1);
 }
 

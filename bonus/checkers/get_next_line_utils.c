@@ -6,11 +6,11 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:04:38 by akheired          #+#    #+#             */
-/*   Updated: 2024/02/16 12:59:19 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:04:44 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 size_t	ft_strlen(char *str)
 {

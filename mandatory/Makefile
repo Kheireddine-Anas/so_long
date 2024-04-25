@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: akheired <akheired@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/25 13:18:07 by akheired          #+#    #+#              #
-#    Updated: 2024/04/25 13:18:08 by akheired         ###   ########.fr        #
+#    Created: 2024/04/25 12:49:27 by akheired          #+#    #+#              #
+#    Updated: 2024/04/25 12:57:47 by akheired         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRC =	so_long.c checkers/get_next_line_utils.c checkers/get_next_line.c checkers/ft_split.c checkers/ft_itoa.c\
+SRC =	so_long.c checkers/get_next_line_utils.c checkers/get_next_line.c checkers/ft_split.c\
 		checkers/utils.c checkers/utils1.c checkers/check_map.c textures/gui_map.c textures/arrow_keys.c
 
 CFLAGS = -Wall -Wextra -Werror -Imlx

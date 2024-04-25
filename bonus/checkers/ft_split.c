@@ -6,11 +6,11 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 09:34:14 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/23 18:54:55 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:04:37 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 static size_t	count_word(const char *str, char c)
 {

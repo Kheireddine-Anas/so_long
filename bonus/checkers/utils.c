@@ -6,11 +6,11 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 13:28:09 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/25 10:58:28 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:04:52 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {

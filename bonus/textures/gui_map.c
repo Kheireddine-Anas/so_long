@@ -6,11 +6,17 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 19:21:42 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/25 12:07:22 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:07:35 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
+
+void	img_win(t_game *map, void *img_item, int i, int j)
+{
+	mlx_put_image_to_window(map->mlx, map->mlx_win,
+		img_item, (j * 32), (i * 32));
+}
 
 void	pleft(t_game *map)
 {
@@ -37,24 +43,22 @@ void	show_game(t_game *map, int i, int j)
 		while (map->gui_map[i][j])
 		{
 			if (map->gui_map[i][j] == 'P')
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-					map->img_player, (j * 32), (i * 32));
+				img_win(map, map->img_player, i, j);
 			else if (map->gui_map[i][j] == 'C')
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-					map->img_coins, (j * 32), (i * 32));
+				img_win(map, map->img_coins, i, j);
 			else if (map->gui_map[i][j] == '1')
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-					map->img_wall, (j * 32), (i * 32));
+				img_win(map, map->img_wall, i, j);
 			else if (map->gui_map[i][j] == 'E')
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-					map->img_exit, (j * 32), (i * 32));
+				img_win(map, map->img_exit, i, j);
+			else if (map->gui_map[i][j] == 'A')
+				img_win(map, map->img_enemy, i, j);
 			else if (map->gui_map[i][j] == 'X')
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-					map->img_epl, (j * 32), (i * 32));
+				img_win(map, map->img_epl, i, j);
 			j++;
 		}
 		i++;
 	}
+	screen_mv(map);
 }
 
 int	keys(int key, t_game *gui_map)
@@ -73,17 +77,6 @@ int	keys(int key, t_game *gui_map)
 	else if (key == KEY_U || key == KEY_W)
 		check = map_up(gui_map);
 	if (check)
-	{
 		gui_map->moves++;
-		write(1, "Moves : ", 9);
-		show_moves(gui_map->moves);
-		write(1, "\n", 1);
-	}
 	return (0);
-}
-
-int	close_win(t_game *map)
-{
-	(void)map;
-	exit(0);
 }

@@ -6,11 +6,11 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:00:14 by akheired          #+#    #+#             */
-/*   Updated: 2024/02/11 11:37:52 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:56:54 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 char	*read_str(int fd, char *str)
 {

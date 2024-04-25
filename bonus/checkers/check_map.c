@@ -6,32 +6,18 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 19:09:17 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/23 19:15:45 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:04:22 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
-void	borders_check(t_game *map)
+void	check_all(t_game *map, int i, int j)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map->cp_map[i])
-	{
-		j = 0;
-		while (map->cp_map[i][j] && map->cp_map[i][j] != '\n')
-		{
-			if (map->cp_map[0][j] != '1' || map->cp_map[i][0] != '1' ||
-			map->cp_map[map->line - 1][j] != '1' ||
-			map->cp_map[i][map->length - 1] != '1')
-				printf("GOLK");
-			j++;
-		}
-		i++;
-	}
+	if (map->cp_map[i][j] != '0' && map->cp_map[i][j] != 'C' &&
+		map->cp_map[i][j] != 'E' && map->cp_map[i][j] != '1' &&
+		map->cp_map[i][j] != 'P' && map->cp_map[i][j] != 'A')
+		errors_msg(2);
 }
 
 void	elements_check(t_game *map, int i, int j)
@@ -53,10 +39,9 @@ void	elements_check(t_game *map, int i, int j)
 				map->coins++;
 			else if (map->cp_map[i][j] == 'E')
 				map->exit++;
-			else if (map->cp_map[i][j] != '0' && map->cp_map[i][j] != 'C' &&
-				map->cp_map[i][j] != 'E' && map->cp_map[i][j] != '1' &&
-				map->cp_map[i][j] != 'P')
-				errors_msg(2);
+			else if (map->cp_map[i][j] == 'A')
+				map->enemys++;
+			check_all(map, i, j);
 			j++;
 		}
 		i++;
@@ -65,7 +50,8 @@ void	elements_check(t_game *map, int i, int j)
 
 void	elements_check_num(t_game *map)
 {
-	if (map->coins < 1 || map->player != 1 || map->exit != 1)
+	if (map->coins < 1 || map->player != 1 || map->exit != 1
+		|| map->enemys < 1)
 		errors_msg(2);
 }
 

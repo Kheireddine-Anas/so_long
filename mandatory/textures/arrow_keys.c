@@ -6,11 +6,11 @@
 /*   By: akheired <akheired@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 19:25:42 by akheired          #+#    #+#             */
-/*   Updated: 2024/04/25 11:32:01 by akheired         ###   ########.fr       */
+/*   Updated: 2024/04/25 12:58:09 by akheired         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	finish_game(void)
 {
@@ -26,19 +26,19 @@ int	map_left(t_game *map)
 	{
 		if (map->gui_map[map->px][map->py - 1] == 'C')
 			map->gui_coins--;
-		else if (map->gui_map[map->px][map->py - 1] == 'A')
-			errors_msg(7);
 		if (map->gui_map[map->px][map->py] == 'X')
 			map->gui_map[map->px][map->py] = 'E';
 		else
 			map->gui_map[map->px][map->py] = '0';
 		map->gui_map[map->px][map->py - 1] = 'P';
 		map->py--;
+		show_game(map, 0, 0);
 		return (1);
 	}
 	else if (map->gui_map[map->px][map->py - 1] == 'E')
 	{
 		eleft(map);
+		show_game(map, 0, 0);
 		return (1);
 	}
 	return (0);
@@ -52,19 +52,19 @@ int	map_right(t_game *map)
 	{
 		if (map->gui_map[map->px][map->py + 1] == 'C')
 			map->gui_coins--;
-		else if (map->gui_map[map->px][map->py + 1] == 'A')
-			errors_msg(7);
 		if (map->gui_map[map->px][map->py] == 'X')
 			map->gui_map[map->px][map->py] = 'E';
 		else
 			map->gui_map[map->px][map->py] = '0';
 		map->gui_map[map->px][map->py + 1] = 'P';
 		map->py++;
+		show_game(map, 0, 0);
 		return (1);
 	}
 	else if (map->gui_map[map->px][map->py + 1] == 'E')
 	{
 		eright(map);
+		show_game(map, 0, 0);
 		return (1);
 	}
 	return (0);
@@ -77,14 +77,13 @@ int	map_down(t_game *map)
 	{
 		if (map->gui_map[map->px + 1][map->py] == 'C')
 			map->gui_coins--;
-		else if (map->gui_map[map->px + 1][map->py] == 'A')
-			errors_msg(7);
 		if (map->gui_map[map->px][map->py] == 'X')
 			map->gui_map[map->px][map->py] = 'E';
 		else
 			map->gui_map[map->px][map->py] = '0';
 		map->gui_map[map->px + 1][map->py] = 'P';
 		map->px++;
+		show_game(map, 0, 0);
 		return (1);
 	}
 	else if (map->gui_map[map->px + 1][map->py] == 'E')
@@ -94,6 +93,7 @@ int	map_down(t_game *map)
 		map->gui_map[map->px][map->py] = '0';
 		map->gui_map[map->px + 1][map->py] = 'X';
 		map->px++;
+		show_game(map, 0, 0);
 		return (1);
 	}
 	return (0);
@@ -106,14 +106,13 @@ int	map_up(t_game *map)
 	{
 		if (map->gui_map[map->px - 1][map->py] == 'C')
 			map->gui_coins--;
-		else if (map->gui_map[map->px - 1][map->py] == 'A')
-			errors_msg(7);
 		if (map->gui_map[map->px][map->py] == 'X')
 			map->gui_map[map->px][map->py] = 'E';
 		else
 			map->gui_map[map->px][map->py] = '0';
 		map->gui_map[map->px - 1][map->py] = 'P';
 		map->px--;
+		show_game(map, 0, 0);
 		return (1);
 	}
 	else if (map->gui_map[map->px - 1][map->py] == 'E')
@@ -123,6 +122,7 @@ int	map_up(t_game *map)
 		map->gui_map[map->px][map->py] = '0';
 		map->gui_map[map->px - 1][map->py] = 'X';
 		map->px--;
+		show_game(map, 0, 0);
 		return (1);
 	}
 	return (0);
