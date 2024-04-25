@@ -14,11 +14,6 @@
 
 void	map_check(t_game *map)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
 	while (map->cp_map[map->line - 1][map->length])
 		map->length++;
 	borders_check(map);

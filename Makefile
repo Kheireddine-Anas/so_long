@@ -13,10 +13,8 @@ all : $(NAME)
 # 	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 $(NAME): $(OBJ)
-		$(CC) $(OBJ) -Lmlx_library -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+		$(CC) $(OBJ) -Lmlx_linux ./minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
-# $(NAME): $(OBJ)
-# 		$(CC) $(OBJ) -Lmlx_linux ./minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 # bonus : $(NAME_BONUS)
 
 # $(NAME_BONUS): $(OBJ_BONUS)

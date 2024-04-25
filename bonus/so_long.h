@@ -6,14 +6,14 @@
 # endif
 #include <stdio.h>
 # include <fcntl.h>
-# include <mlx.h>
+# include "minilibx-linux/mlx.h"
 # include <unistd.h>
 # include <stdlib.h>
 
-# define KEY_L 123
-# define KEY_R 124
-# define KEY_DW 125
-# define KEY_U 126
+# define KEY_L 65361
+# define KEY_R 65363
+# define KEY_DW 65364
+# define KEY_U 65362
 
 # define KEY_A 0
 # define KEY_S 1
@@ -29,6 +29,8 @@ typedef struct s_game
 	void	*img_player;
 	void	*img_coins;
 	void	*img_enemy;
+	void	*img_epl;
+	void	*img_epr;
 	int		img_width;
 	int		img_height;
 	char	*str_line;

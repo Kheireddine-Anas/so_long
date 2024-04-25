@@ -34,6 +34,9 @@ void	show_game(t_game *map, int i, int j)
 			else if (map->gui_map[i][j] == 'A')
 				mlx_put_image_to_window(map->mlx, map->mlx_win,
 					map->img_enemy, (j * 32), (i * 32));
+			else if (map->gui_map[i][j] == 'X')
+				mlx_put_image_to_window(map->mlx, map->mlx_win,
+					map->img_epl, (j * 32), (i * 32));
 			j++;
 		}
 		i++;

@@ -6,7 +6,8 @@
 # endif
 #include <stdio.h>
 # include <fcntl.h>
-# include <mlx.h>
+// # include <mlx.h>
+# include "minilibx-linux/mlx.h"
 # include <unistd.h>
 # include <stdlib.h>
 

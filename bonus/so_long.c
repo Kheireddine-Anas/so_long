@@ -36,11 +36,6 @@ void	borders_check(t_game *map)
 
 void	map_check(t_game *map)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
 	while (map->cp_map[map->line - 1][map->length])
 		map->length++;
 	borders_check(map);
@@ -63,6 +58,8 @@ void	gui_game(t_game *gui_map)
 	gui_map->img_wall = mlx_xpm_file_to_image(gui_map->mlx, "src/wall.xpm",
 			&gui_map->img_width, &gui_map->img_height);
 	gui_map->img_exit = mlx_xpm_file_to_image(gui_map->mlx, "src/exit.xpm",
+			&gui_map->img_width, &gui_map->img_height);
+	gui_map->img_epl = mlx_xpm_file_to_image(gui_map->mlx, "src/epl.xpm",
 			&gui_map->img_width, &gui_map->img_height);
 	gui_map->img_enemy = mlx_xpm_file_to_image(gui_map->mlx, "src/fire1.xpm",
 			&gui_map->img_width, &gui_map->img_height);
